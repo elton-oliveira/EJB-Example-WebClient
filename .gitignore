@@ -1,3 +1,7 @@
+**/lib/
+lib-provided/
+target/
+
 # Eclipse files and folder #
 .classpath
 .project
