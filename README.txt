@@ -1,0 +1,1 @@
+We can deploy this project on Tomcat 7 and the EJB-Example project must be deployed on JBoss 7.
