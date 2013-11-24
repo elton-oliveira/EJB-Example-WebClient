@@ -14,7 +14,7 @@ import br.com.fluentcode.infra.mvc.controller.Controller;
 /**
  * 
  * A curiosity about servlets: according to the servlet specification, by
- * default, exists a single instance of each servlet. Arriving a request to
+ * default, exists a single instance of each servlet class. Arriving a request to
  * servlet, a new thread is open on that instance that already exists. So when
  * we talk about servlets, blueprint says to avoid using shared attributes.
  * 
