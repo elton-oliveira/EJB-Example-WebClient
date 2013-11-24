@@ -1,4 +1,4 @@
-package br.com.fluentcode.infra.mvc.servlet;
+package br.com.fluentcode.infra.mvc.controller;
 
 import java.io.IOException;
 
@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.fluentcode.infra.mvc.controller.Controller;
 
 /**
  * 

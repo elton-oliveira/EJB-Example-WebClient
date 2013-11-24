@@ -47,6 +47,11 @@
 		<javac srcdir="src" destdir="${class.dir}">
 			<classpath refid="path.compile.id" />
 		</javac>
+		<copy todir="${class.dir}">
+			<fileset dir="src">
+				<include name="*.properties" />
+			</fileset>
+		</copy>
 	</target>
 
 
@@ -78,7 +83,7 @@
       ================================= -->
 	<target name="server.run" depends="deploy">
 		<exec executable="${tomcat.home}/bin/startup.bat">
-			<env key="CATALINA_HOME" value="${tomcat.home}"/>	
+			<env key="CATALINA_HOME" value="${tomcat.home}"/>
 		</exec>
 	</target>
 
@@ -88,7 +93,7 @@
       ================================= -->
 	<target name="server.shutdown">
 		<exec executable="${tomcat.home}/bin/shutdown.bat">
-			<env key="CATALINA_HOME" value="${tomcat.home}"/>	
+			<env key="CATALINA_HOME" value="${tomcat.home}"/>
 		</exec>
 	</target>
 
