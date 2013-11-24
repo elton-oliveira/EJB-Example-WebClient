@@ -1,0 +1,1 @@
+<p>Welcome to EJB-Example-Web-Client</p>
