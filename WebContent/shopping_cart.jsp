@@ -10,11 +10,11 @@
 <body>
 	<c:import url="header.jsp" />
 	
-	<form action="applicationServlet?controller=br.com.fluentcode.controller.ShoppingCartController" method="POST">
+	<form action="br.com.fluentcode.controller.ShoppingCartController.do" method="POST">
 		Item: <input type="text" name="item" /><br /> 
 		<input type="submit" value="Add" />
 	</form>
-	<form action="applicationServlet?controller=br.com.fluentcode.controller.ShoppingCartController" method="POST">
+	<form action="br.com.fluentcode.controller.ShoppingCartController.do" method="POST">
 		<input type="hidden" name="operation" value="finishShopping"/>
 		<input type="submit" value="Finish shopping" />
 	</form>

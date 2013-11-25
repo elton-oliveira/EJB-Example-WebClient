@@ -56,7 +56,7 @@ public class ShoppingCartController extends Controller {
 		p.put(Context.SECURITY_PRINCIPAL, "elton");
 		p.put(Context.SECURITY_CREDENTIALS, "123");
 		InitialContext ctx = new InitialContext(p);
-		return (ShoppingCartRemote) ctx .lookup("EJB-Example/ShoppingCartBean!br.com.fluentcode.ejb.remote.ShoppingCartRemote");
+		return (ShoppingCartRemote) ctx.lookup("EJB-Example/ShoppingCartBean!br.com.fluentcode.ejb.remote.ShoppingCartRemote");
 	}
 
 }

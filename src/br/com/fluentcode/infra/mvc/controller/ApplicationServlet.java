@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  * we talk about servlets, blueprint says to avoid using shared attributes.
  * 
  */
-@WebServlet("/applicationServlet")
+@WebServlet("*.do")
 public class ApplicationServlet extends HttpServlet {
 
 	@Override
@@ -28,7 +28,7 @@ public class ApplicationServlet extends HttpServlet {
 
 		try {
 			String page = null;
-			String controllerClassName = request.getParameter("controller");
+			String controllerClassName = getClassName(request);
 			Class clazz = Class.forName(controllerClassName);
 			Controller instance = (Controller) clazz.newInstance();
 			String methodName = request.getParameter("operation");
@@ -47,5 +47,10 @@ public class ApplicationServlet extends HttpServlet {
 		}
 
 	}
-
+	
+	private String getClassName(HttpServletRequest request){
+		String str = request.getServletPath().replace("/","");
+		return str.substring(0, str.lastIndexOf(".do"));
+	}
+	
 }

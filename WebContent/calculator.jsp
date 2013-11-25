@@ -10,7 +10,7 @@
 <body>
 	<c:import url="header.jsp" />
 	
-	<form action="applicationServlet?controller=br.com.fluentcode.controller.SumController" method="POST">
+	<form action="br.com.fluentcode.controller.SumController.do" method="POST">
 		Value 1: <input type="text" name="value1" /><br /> 
 		Value 2: <input	type="text" name="value2" /><br /> 
 		<input type="submit" value="Sum" />
