@@ -1,12 +1,10 @@
 package br.com.fluentcode.controller;
 
-import java.io.IOException;
 import java.util.Properties;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,10 +14,8 @@ import br.com.fluentcode.infra.mvc.controller.Controller;
 
 public class ShoppingCartController extends Controller {
 
-	@Override
-	public String execute(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException,
-			NamingException {
+	public String addItem(HttpServletRequest request,
+			HttpServletResponse response) throws NamingException {
 
 		ShoppingCartRemote cart = getShoppingCartRemote(request.getSession());
 		String item = request.getParameter("item");

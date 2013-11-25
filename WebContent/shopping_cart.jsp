@@ -10,7 +10,7 @@
 <body>
 	<c:import url="header.jsp" />
 	
-	<form action="br.com.fluentcode.controller.ShoppingCartController.do" method="POST">
+	<form action="br.com.fluentcode.controller.ShoppingCartController.do?operation=addItem" method="POST">
 		Item: <input type="text" name="item" /><br /> 
 		<input type="submit" value="Add" />
 	</form>

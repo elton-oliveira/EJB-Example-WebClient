@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public abstract class Controller {
 	
-	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		return null;
 	}
 }

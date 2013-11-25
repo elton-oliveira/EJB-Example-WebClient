@@ -1,12 +1,10 @@
 package br.com.fluentcode.controller;
 
-import java.io.IOException;
 import java.util.Properties;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,7 +16,7 @@ public class SumController extends Controller {
 
 	@Override
 	public String execute(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException, NamingException {
+			HttpServletResponse response) throws NamingException {
 		
 		CalculatorRemote calculator = calculatorRemoteLookup();
 
