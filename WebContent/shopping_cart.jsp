@@ -10,6 +10,8 @@
 <body>
 	<c:import url="header.jsp" />
 	
+	<h3>Shopping Cart (Stateful Session Bean Client)</h3>
+	
 	<form action="br.com.fluentcode.controller.ShoppingCartController.do?operation=addItem" method="POST">
 		Item: <input type="text" name="item" /><br /> 
 		<input type="submit" value="Add" />

@@ -10,6 +10,8 @@
 <body>
 	<c:import url="header.jsp" />
 	
+	<h3>Calculator (Stateless Session Bean Client)</h3>
+	
 	<form action="br.com.fluentcode.controller.SumController.do" method="POST">
 		Value 1: <input type="text" name="value1" /><br /> 
 		Value 2: <input	type="text" name="value2" /><br /> 
