@@ -28,8 +28,7 @@ public class ApplicationServlet extends HttpServlet {
 
 		try {
 			String page = null;
-			String controllerClassName = getClassName(request);
-			Class clazz = Class.forName(controllerClassName);
+			Class clazz = Class.forName(getClassName(request));
 			Controller instance = (Controller) clazz.newInstance();
 			String methodName = request.getParameter("operation");
 			if(methodName == null){
