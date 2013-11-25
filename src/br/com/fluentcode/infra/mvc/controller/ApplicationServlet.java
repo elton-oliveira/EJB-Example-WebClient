@@ -1,6 +1,7 @@
 package br.com.fluentcode.infra.mvc.controller;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,10 +27,17 @@ public class ApplicationServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		try {
+			String page = null;
 			String controllerClassName = request.getParameter("controller");
 			Class clazz = Class.forName(controllerClassName);
-			Controller contoller = (Controller) clazz.newInstance();
-			String page = contoller.execute(request, response);
+			Controller instance = (Controller) clazz.newInstance();
+			String methodName = request.getParameter("operation");
+			if(methodName == null){
+				page = instance.execute(request, response);
+			}else{
+				Method method = clazz.getMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);
+				page = (String) method.invoke(instance, request, response);
+			}
 			if(page != null){
 				RequestDispatcher rd = request.getRequestDispatcher(page);
 				rd.forward(request, response);

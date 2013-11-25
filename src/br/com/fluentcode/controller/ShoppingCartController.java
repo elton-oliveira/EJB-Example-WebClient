@@ -14,37 +14,35 @@ import javax.servlet.http.HttpSession;
 import br.com.fluentcode.ejb.remote.ShoppingCartRemote;
 import br.com.fluentcode.infra.mvc.controller.Controller;
 
-
-public class ShoppingCartController implements Controller {
+public class ShoppingCartController extends Controller {
 
 	@Override
 	public String execute(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException, NamingException {
-		
-		if (request.getParameter("method") == null) {
-			ShoppingCartRemote cart = getShoppingCartRemote(request.getSession());
+			HttpServletResponse response) throws ServletException, IOException,
+			NamingException {
 
-			String item = request.getParameter("item");
-
-			cart.addItem(item);
-		} else if ("finishShopping".equals(request.getParameter("method"))) {
-             this.finishShopping(request);
-		}
+		ShoppingCartRemote cart = getShoppingCartRemote(request.getSession());
+		String item = request.getParameter("item");
+		cart.addItem(item);
 
 		return "/shopping_cart.jsp";
 	}
-	
 
-	private void finishShopping(HttpServletRequest request) throws NamingException{
+	public String finishShopping(HttpServletRequest request,
+			HttpServletResponse response) throws NamingException {
+		
 		ShoppingCartRemote cart = getShoppingCartRemote(request.getSession());
 		request.setAttribute("items", cart.getItems());
 		cart.finishShopping();
 		request.getSession().removeAttribute("shoppingCartRemote");
+		
+		return "/shopping_cart.jsp";
 	}
-	
-	private ShoppingCartRemote getShoppingCartRemote(HttpSession session) throws NamingException{
+
+	private ShoppingCartRemote getShoppingCartRemote(HttpSession session)
+			throws NamingException {
 		Object shoppingCart = session.getAttribute("shoppingCartRemote");
-		if(shoppingCart == null){
+		if (shoppingCart == null) {
 			shoppingCart = shoppingCartRemoteLookup();
 			session.setAttribute("shoppingCartRemote", shoppingCart);
 		}
@@ -58,7 +56,7 @@ public class ShoppingCartController implements Controller {
 		p.put(Context.SECURITY_PRINCIPAL, "elton");
 		p.put(Context.SECURITY_CREDENTIALS, "123");
 		InitialContext ctx = new InitialContext(p);
-		return (ShoppingCartRemote) ctx.lookup("EJB-Example/ShoppingCartBean!br.com.fluentcode.ejb.remote.ShoppingCartRemote");
+		return (ShoppingCartRemote) ctx .lookup("EJB-Example/ShoppingCartBean!br.com.fluentcode.ejb.remote.ShoppingCartRemote");
 	}
 
 }

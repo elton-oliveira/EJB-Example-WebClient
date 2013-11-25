@@ -14,7 +14,7 @@ import br.com.fluentcode.ejb.remote.CalculatorRemote;
 import br.com.fluentcode.infra.mvc.controller.Controller;
 
 
-public class SumController implements Controller {
+public class SumController extends Controller {
 
 	@Override
 	public String execute(HttpServletRequest request,

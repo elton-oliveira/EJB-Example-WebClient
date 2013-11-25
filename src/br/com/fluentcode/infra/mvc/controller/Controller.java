@@ -3,7 +3,9 @@ package br.com.fluentcode.infra.mvc.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public interface Controller {
+public class Controller {
 	
-	String execute(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		return null;
+	}
 }
