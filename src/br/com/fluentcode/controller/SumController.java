@@ -20,7 +20,7 @@ public class SumController implements Controller {
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException, NamingException {
 		
-		CalculatorRemote calculator = lookupCalculatorRemote();
+		CalculatorRemote calculator = calculatorRemoteLookup();
 
 		int value1 = Integer.parseInt(request.getParameter("value1"));
 		int value2 = Integer.parseInt(request.getParameter("value2"));
@@ -31,7 +31,7 @@ public class SumController implements Controller {
 		return "/calculator.jsp";
 	}
 
-	private CalculatorRemote lookupCalculatorRemote() throws NamingException {
+	private CalculatorRemote calculatorRemoteLookup() throws NamingException {
 		Properties p = new Properties();
 		p.put(Context.INITIAL_CONTEXT_FACTORY, "org.jboss.naming.remote.client.InitialContextFactory");
 		p.put(Context.PROVIDER_URL, "remote://localhost:4447");

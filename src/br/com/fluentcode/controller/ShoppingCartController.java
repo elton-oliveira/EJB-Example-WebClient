@@ -9,6 +9,7 @@ import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.fluentcode.ejb.remote.ShoppingCartRemote;
 import br.com.fluentcode.infra.mvc.controller.Controller;
@@ -21,7 +22,7 @@ public class ShoppingCartController implements Controller {
 			HttpServletResponse response) throws ServletException, IOException, NamingException {
 		
 		if (request.getParameter("method") == null) {
-			ShoppingCartRemote cart = lookupCalculatorRemote();
+			ShoppingCartRemote cart = getShoppingCartRemote(request.getSession());
 
 			String item = request.getParameter("item");
 
@@ -33,19 +34,24 @@ public class ShoppingCartController implements Controller {
 		return "/shopping_cart.jsp";
 	}
 	
-	/**
-	 * 
-	 * TODO ler comentário do método
-	 */
+
 	private void finishShopping(HttpServletRequest request) throws NamingException{
-		//Não pode fazer lookup aqui não está mantendo o estado (trazendo outro ejb)
-		//Como obtém um statefull ejb em um servlet, já que o stateful não pode ser compartilhado???????
-		ShoppingCartRemote cart = lookupCalculatorRemote();
+		ShoppingCartRemote cart = getShoppingCartRemote(request.getSession());
 		request.setAttribute("items", cart.getItems());
 		cart.finishShopping();
+		request.getSession().removeAttribute("shoppingCartRemote");
+	}
+	
+	private ShoppingCartRemote getShoppingCartRemote(HttpSession session) throws NamingException{
+		Object shoppingCart = session.getAttribute("shoppingCartRemote");
+		if(shoppingCart == null){
+			shoppingCart = shoppingCartRemoteLookup();
+			session.setAttribute("shoppingCartRemote", shoppingCart);
+		}
+		return (ShoppingCartRemote) shoppingCart;
 	}
 
-	private ShoppingCartRemote lookupCalculatorRemote() throws NamingException {
+	private ShoppingCartRemote shoppingCartRemoteLookup() throws NamingException {
 		Properties p = new Properties();
 		p.put(Context.INITIAL_CONTEXT_FACTORY, "org.jboss.naming.remote.client.InitialContextFactory");
 		p.put(Context.PROVIDER_URL, "remote://localhost:4447");
