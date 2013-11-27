@@ -1,9 +1,6 @@
 package br.com.fluentcode.controller;
 
-import java.util.Properties;
-
 import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import br.com.fluentcode.ejb.remote.ShoppingCartRemote;
 import br.com.fluentcode.infra.mvc.controller.Controller;
+import br.com.fluentcode.util.InitialContextFactory;
 
 public class ShoppingCartController extends Controller {
 
@@ -46,12 +44,7 @@ public class ShoppingCartController extends Controller {
 	}
 
 	private ShoppingCartRemote shoppingCartRemoteLookup() throws NamingException {
-		Properties p = new Properties();
-		p.put(Context.INITIAL_CONTEXT_FACTORY, "org.jboss.naming.remote.client.InitialContextFactory");
-		p.put(Context.PROVIDER_URL, "remote://localhost:4447");
-		p.put(Context.SECURITY_PRINCIPAL, "elton");
-		p.put(Context.SECURITY_CREDENTIALS, "123");
-		InitialContext ctx = new InitialContext(p);
+		Context ctx = new InitialContextFactory().getContext();
 		return (ShoppingCartRemote) ctx.lookup("EJB-Example/ShoppingCartBean!br.com.fluentcode.ejb.remote.ShoppingCartRemote");
 	}
 
