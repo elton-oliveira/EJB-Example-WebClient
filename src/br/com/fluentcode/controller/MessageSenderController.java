@@ -31,7 +31,6 @@ public class MessageSenderController extends Controller {
 		return "/message_sender.jsp";
 	}
 
-	//TODO PRECISA VER PORQUE NÃO ESTÁ CRIANDO A Connection, está lançando NullPointerException???????????????????????????
 	private void senderJmsMessage(String message) throws NamingException,
 			JMSException {
 		Context context = new InitialContextFactory().getContext();
