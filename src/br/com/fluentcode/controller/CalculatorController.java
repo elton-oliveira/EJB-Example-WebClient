@@ -10,7 +10,7 @@ import br.com.fluentcode.infra.mvc.controller.Controller;
 import br.com.fluentcode.util.InitialContextFactory;
 
 
-public class SumController extends Controller {
+public class CalculatorController extends Controller {
 
 	@Override
 	public String execute(HttpServletRequest request,

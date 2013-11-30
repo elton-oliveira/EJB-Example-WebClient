@@ -12,7 +12,7 @@
 	
 	<h3>Calculator (Stateless Session Bean Client)</h3>
 	
-	<form action="br.com.fluentcode.controller.SumController.do" method="POST">
+	<form action="br.com.fluentcode.controller.CalculatorController.do" method="POST">
 		Value 1: <input type="text" name="value1" /><br /> 
 		Value 2: <input	type="text" name="value2" /><br /> 
 		<input type="submit" value="Sum" />
