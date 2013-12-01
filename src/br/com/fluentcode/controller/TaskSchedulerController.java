@@ -2,6 +2,7 @@ package br.com.fluentcode.controller;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.NamingException;
@@ -36,9 +37,9 @@ public class TaskSchedulerController extends Controller{
 			HttpServletResponse response) throws NamingException {
 		
 		TaskSchedulerRemote scheduler = taskSchedulerRemoteLookup();
-		scheduler.cancelTask();
+		List<String> messages = scheduler.cancelTask();
 		
-		request.setAttribute("result", "Task was canceled");
+		request.setAttribute("result", messages);
 		
 		return "/task_scheduler.jsp";
 	}
