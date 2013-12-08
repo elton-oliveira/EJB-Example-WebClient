@@ -13,10 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 
- * A curiosity about servlets: according to the servlet specification, by
- * default, exists a single instance of each servlet class. Arriving a request to
- * servlet, a new thread is open on that instance that already exists. So when
- * we talk about servlets, blueprint says to avoid using shared attributes.
+ * According to the servlet specification, by default, "a servlet container may send 
+ * concurrent requests through the service method of the servlet". In other words 
+ * servlet is multithread. Arriving a request to servlet, a new thread can be opened
+ * on that instance that already exists. So when we talk about servlets, blueprint 
+ * says to avoid using shared attributes.
  * 
  */
 @WebServlet("*.do")
