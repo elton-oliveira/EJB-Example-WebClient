@@ -28,7 +28,8 @@ public class MessageSenderController extends Controller {
 
 	private void senderJmsMessage(String message) throws NamingException, JMSException {
 		Context ctx = new InitialContextFactory().getContext();
-		MessageSenderRemote sender =  (MessageSenderRemote) ctx.lookup("EJB-Example/MessageSenderBean!br.com.fluentcode.ejb.remote.MessageSenderRemote");
+		String jndiName = "EJB-Example/MessageSenderBean!" + MessageSenderRemote.class.getName();
+		MessageSenderRemote sender =  (MessageSenderRemote) ctx.lookup(jndiName);
 		sender.sendMessage(message);
 	}
 

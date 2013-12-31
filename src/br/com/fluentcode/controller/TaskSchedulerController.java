@@ -46,7 +46,8 @@ public class TaskSchedulerController extends Controller{
 	
 	private TaskSchedulerRemote taskSchedulerRemoteLookup() throws NamingException {
 		Context ctx = new InitialContextFactory().getContext();
-		return  (TaskSchedulerRemote) ctx.lookup("EJB-Example/TaskSchedulerBean!br.com.fluentcode.ejb.remote.TaskSchedulerRemote");
+		String jndiName = "EJB-Example/TaskSchedulerBean!" + TaskSchedulerRemote.class.getName();
+		return  (TaskSchedulerRemote) ctx.lookup(jndiName);
 	}
 
 }

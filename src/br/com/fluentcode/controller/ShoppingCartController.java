@@ -45,7 +45,8 @@ public class ShoppingCartController extends Controller {
 
 	private ShoppingCartRemote shoppingCartRemoteLookup() throws NamingException {
 		Context ctx = new InitialContextFactory().getContext();
-		return (ShoppingCartRemote) ctx.lookup("EJB-Example/ShoppingCartBean!br.com.fluentcode.ejb.remote.ShoppingCartRemote");
+		String jndiName = "EJB-Example/ShoppingCartBean!" + ShoppingCartRemote.class.getName();
+		return (ShoppingCartRemote) ctx.lookup(jndiName);
 	}
 
 }

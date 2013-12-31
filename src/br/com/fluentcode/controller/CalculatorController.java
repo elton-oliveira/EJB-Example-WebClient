@@ -29,7 +29,8 @@ public class CalculatorController extends Controller {
 
 	private CalculatorRemote calculatorRemoteLookup() throws NamingException {
 		Context ctx = new InitialContextFactory().getContext();
-		return (CalculatorRemote) ctx.lookup("EJB-Example/CalculatorBean!br.com.fluentcode.ejb.remote.CalculatorRemote");
+		String jndiName = "EJB-Example/CalculatorBean!" + CalculatorRemote.class.getName();
+		return (CalculatorRemote) ctx.lookup(jndiName);
 	}
 
 }
