@@ -8,4 +8,4 @@ To generate the jar project, deploy and run server, in terminal, run:
 
 ant server.run
 
-**Note:**  EJB-Example project must be deployed on JBoss 7
+**Note:**  To run this project is needed deploy the [EJB-Example](https://github.com/elton-oliveira/EJB-Example/#1-set-the-value-of-jbosshome) project.
